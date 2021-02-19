@@ -12,7 +12,7 @@ let candidateAnswer = ""
 let questions = [ 'Who was the first American woman in space? ', 'True or false: 5 kilometer == 5000 meters? ', '(5 + 3)/2 * 10 = ? ', 'Given the array [8, "Orbit", "Trajectory", 45], what entry is at index 2? ', 'What is the minimum crew size for the ISS? ' ];
 let correctAnswers = [ 'Sally Ride', 'true', '40', 'Trajectory', '3' ];
 let candidateAnswers = [];
-let numberOfCorrect = [];
+
 
 function askForName() {
   // TODO 1.1b: Ask for candidate's name //
@@ -29,16 +29,18 @@ candidateAnswers.push(input.question(`${[1+i]}) ${questions[i]}\n`));
 function gradeQuiz(candidateAnswers) {
 
   // TODO 1.2c: Let the candidate know if they have answered the question correctly or incorrectly // 
+
 for (i = 0; i < correctAnswers.length; i++){
   console.log(`${[1+i]}) Your answer: ${candidateAnswers[i]}. Correct answer: ${correctAnswers[i]}.`)
 }
-for (i = 0; i < correctAnswers.length; i++){
+let numberOfCorrect = 0;
+  for (i = 0; i < correctAnswers.length; i++){
   if (candidateAnswers[i].toLowerCase() === correctAnswers[i].toLowerCase()){
-numberOfCorrect.push(1)
-  }
+numberOfCorrect++;
 }
-  let grade = (numberOfCorrect.length/questions.length*100)
-console.log(`\n>>> Overall Grade: ${grade}% (${numberOfCorrect.length} of 5 responses correct) <<<`)  
+}
+ let grade = (numberOfCorrect/questions.length*100)
+console.log(`\n>>> Overall Grade: ${grade}% (${numberOfCorrect} of 5 responses correct) <<<`)  
 
 if (grade < 79){
   console.log(`>>> Status: FAILED <<<`)
